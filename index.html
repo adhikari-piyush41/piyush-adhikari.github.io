@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Piyush Adhikari — Cybersecurity Portfolio</title>
+  <meta name="description" content="Portfolio of Piyush Adhikari — cybersecurity analyst & researcher. Projects, experience, skills, and contact." />
+  <meta name="theme-color" content="#00ff88" />
+  <meta property="og:title" content="Piyush Adhikari — Cybersecurity Portfolio" />
+  <meta property="og:description" content="Cybersecurity portfolio with a hacker/terminal theme. Projects, experience, skills, contact." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#020202; --text:#d1ffe8; --muted:#7fffd4; --accent:#00ff88; --accent-2:#89ff00; --warn:#ffea00; --danger:#ff4d4d;
+      --border:#0a3; --panel:#050b07; --link:#5fffbf; --shadow:0 0 24px rgba(0,255,136,0.2);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background:radial-gradient(1200px 800px at 50% -20%, rgba(0,255,136,0.08), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.65; letter-spacing:.2px; overflow-x:hidden;
+    }
+    /* Subtle CRT scanline + glow */
+    body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.02), rgba(255,255,255,.02) 1px, transparent 2px, transparent 3px ); pointer-events:none; mix-blend-mode:overlay}
+    body::after{content:""; position:fixed; inset:0; box-shadow:inset 0 0 120px rgba(0,255,136,.08); pointer-events:none}
+
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    header{position:sticky; top:0; backdrop-filter:blur(6px); background:rgba(2,2,2,.6); border-bottom:1px solid #063; z-index:50}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 16px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.5px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent); box-shadow:0 0 12px var(--accent)}
+    .nav a{padding:8px 10px; border:1px dashed #084; border-radius:10px; box-shadow:var(--shadow)}
+    .nav a:hover{background:#041; text-decoration:none}
+    .spacer{flex:1}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, #07150f, #030905); box-shadow:var(--shadow)}
+
+    main{max-width:1100px; margin:0 auto; padding:24px 16px 80px}
+
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:36px 0}
+    .panel{background:linear-gradient(180deg, #07150f, #030905); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
+    .terminal{padding:20px; position:relative}
+    .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed #084}
+    .dot-r, .dot-y, .dot-g{width:10px;height:10px;border-radius:50%}
+    .dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f}
+
+    .prompt{color:var(--muted)}
+    .cursor{display:inline-block; width:9px; background:var(--accent); animation:blink 1s steps(2,start) infinite}
+    @keyframes blink{50%{background:transparent}}
+    .kbd{display:inline-block; font-size:.95em; border:1px solid #094; padding:2px 6px; border-radius:6px; background:#041}
+
+    .stack{display:grid; gap:16px}
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+    .card{padding:16px}
+
+    h1{font-weight:600; letter-spacing:1px; margin:0 0 8px}
+    h2{margin:18px 0 8px; font-weight:600}
+    h3{margin:14px 0 6px}
+    .muted{color:#a8ffdf}
+    .tag{display:inline-block; padding:4px 8px; border:1px solid #095; border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:#041}
+
+    section{margin-top:40px}
+    .section-title{display:flex; align-items:center; gap:12px; font-weight:600}
+    .section-title .hash{color:var(--accent-2)}
+
+    .timeline{position:relative; padding-left:18px}
+    .timeline::before{content:""; position:absolute; left:4px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent)}
+    .item{position:relative; margin:14px 0; padding-left:10px}
+    .item::before{content:""; position:absolute; left:-2px; top:6px; width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent)}
+
+    .project{border:1px dashed #085}
+    .project .meta{display:flex; gap:10px; flex-wrap:wrap}
+
+    footer{margin-top:48px; padding:24px 0; border-top:1px solid #063; color:#bdf6de; font-size:.95em}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>piyush@portfolio:<span class="muted">~/cyber</span>$</span></div>
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
+      <div class="spacer"></div>
+      <a class="btn" id="printBtn" href="#">↥ export / print</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / INTRO -->
+    <section class="hero">
+      <div class="panel terminal">
+        <div class="term-head"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+        <h1>hi, i'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
+        <p><span class="prompt">$</span> <span id="typed"></span><span class="cursor">&nbsp;</span></p>
+        <p class="muted">Cybersecurity • DevSecOps • IoT Security • Research</p>
+        <div>
+          <a class="tag" href="#projects">#red-team</a>
+          <a class="tag" href="#projects">#bug-bounty</a>
+          <a class="tag" href="#projects">#ml-security</a>
+          <a class="tag" href="#projects">#devsecops</a>
+        </div>
+      </div>
+      <div class="panel card">
+        <h2>quick facts</h2>
+        <ul>
+          <li>Role: Cybersecurity (analysis, research, automation)</li>
+          <li>Focus: IoT security, CI/CD hardening, vulnerability evolution</li>
+          <li>Currently: final-year student; active in research & bug bounty</li>
+          <li>Location: Canada</li>
+        </ul>
+        <div style="margin-top:8px">
+          <a class="btn" target="_blank" rel="noreferrer" href="mailto:hello@piyush.dev">✉ email</a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://github.com/"> github</a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/piyush-adhikari/">in linkedin</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title"><span class="hash">#</span><h2>about</h2></div>
+      <div class="panel card">
+        <p>
+          Security-minded engineer with a research streak. I design resilient detection systems, automate security validation, and turn messy data into decisions. I like shipping clean tooling and writing clear docs so teams can move fast <em>and</em> safely.
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-title"><span class="hash">#</span><h2>experience</h2></div>
+      <div class="timeline panel card">
+        <div class="item">
+          <h3>Cybersecurity Researcher — <span class="muted">Independent / University</span></h3>
+          <div class="muted">2024–2025 · Canada</div>
+          <ul>
+            <li>Built an IoT event verification pipeline robust to external influence (EI) with SVM ensembles; designed criteria to resist EI mimicry at runtime.</li>
+            <li>Led a study on vulnerability evolution in CI/CD (200k+ Docker image versions), proposing dynamic risk scoring and RL-based remediation planning.</li>
+            <li>Hands-on with Grafana Labs (Intigriti) as bug bounty focus; emphasis on logical vulns and authz flaws.</li>
+          </ul>
+        </div>
+        <!-- Add more roles below as needed -->
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title"><span class="hash">#</span><h2>projects</h2></div>
+      <div class="grid">
+        <article class="panel card project">
+          <h3>Vulnerability Evolution Dataset</h3>
+          <p>Longitudinal dataset over 200k container versions to model how CVEs emerge, persist, and retire across CI/CD lifecycles. Includes dynamic risk scoring.</p>
+          <div class="meta">
+            <span class="tag">docker</span>
+            <span class="tag">cve</span>
+            <span class="tag">risk-model</span>
+          </div>
+          <p><a href="#">repo</a> · <a href="#">paper (preprint)</a></p>
+        </article>
+        <article class="panel card project">
+          <h3>EI-Resilient Event Verification</h3>
+          <p>Multi-sensor SVM ensemble for IoT events. Discovers II characteristics that resist EI mimicry using automated hypothesis testing.</p>
+          <div class="meta">
+            <span class="tag">iot</span>
+            <span class="tag">svm</span>
+            <span class="tag">robust-ml</span>
+          </div>
+          <p><a href="#">repo</a> · <a href="#">docs</a></p>
+        </article>
+        <article class="panel card project">
+          <h3>DevSecOps Hardening Toolkit</h3>
+          <p>Opinionated scripts and GitHub Actions to gate builds on SBOM diff, high/critical CVE drift, and policy-as-code checks.</p>
+          <div class="meta">
+            <span class="tag">sbom</span>
+            <span class="tag">slsA</span>
+            <span class="tag">gha</span>
+          </div>
+          <p><a href="#">repo</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title"><span class="hash">#</span><h2>skills</h2></div>
+      <div class="panel card">
+        <p>
+          <span class="tag">Threat Modeling</span>
+          <span class="tag">SAST/DAST</span>
+          <span class="tag">Container Security</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Python</span>
+          <span class="tag">Bash</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">IoT Protocols</span>
+          <span class="tag">Bug Bounty</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-title"><span class="hash">#</span><h2>education</h2></div>
+      <div class="panel card">
+        <ul>
+          <li>Bachelor’s (final year) — Cybersecurity focus — Canada</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title"><span class="hash">#</span><h2>contact</h2></div>
+      <div class="panel card">
+        <p>Email: <a href="mailto:hello@piyush.dev">hello@piyush.dev</a> · GitHub: <a href="https://github.com/" target="_blank" rel="noreferrer">github.com/your-handle</a> · LinkedIn: <a href="https://www.linkedin.com/in/piyush-adhikari/" target="_blank" rel="noreferrer">/in/piyush-adhikari</a></p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Piyush Adhikari. Built with HTML/CSS/JS. Terminal theme, accessible contrast, no frameworks.</div>
+    </footer>
+  </main>
+
+  <script>
+    // Editable headline lines (quickly customize without digging around)
+    const HEADLINE = [
+      "cybersecurity analyst & researcher",
+      "devsecops | iot security | ml",
+      "breaking things. documenting better. fixing fastest."
+    ];
+
+    // Typewriter
+    const el = document.getElementById('typed');
+    let i=0, j=0, dir=1; // which line, char index, direction
+    function tick(){
+      const line = HEADLINE[i];
+      j += dir;
+      el.textContent = line.slice(0, j);
+      if(j === line.length + 8){ dir = -1; }
+      if(j === 0){ dir = 1; i = (i+1) % HEADLINE.length; }
+      setTimeout(tick, 60);
+    }
+    tick();
+
+    // Print / Export friendly
+    document.getElementById('printBtn').addEventListener('click', (e)=>{ e.preventDefault(); window.print(); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <style media="print">
+    header, #printBtn{ display:none !important }
+    body{ background:#fff; color:#000 }
+    a{ color:#000; text-decoration:none }
+    .panel{ background:#fff; border-color:#ddd; box-shadow:none }
+  </style>
+
+  <!-- Schema.org Person for richer SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Piyush Adhikari",
+    "alternateName": "Piyu",
+    "jobTitle": "Cybersecurity Analyst & Researcher",
+    "url": "",
+    "email": "hello@piyush.dev",
+    "sameAs": [
+      "https://www.linkedin.com/in/piyush-adhikari/",
+      "https://github.com/"
+    ],
+    "knowsAbout": ["Cybersecurity", "IoT Security", "DevSecOps", "Bug Bounty", "Machine Learning"]
+  }
+  </script>
+</body>
+</html>
