@@ -11,37 +11,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#020202; --text:#d1ffe8; --muted:#9deccf; --accent:#00ff88; --accent-2:#89ff00; --warn:#ffea00; --danger:#ff4d4d;
-      --border:#0a3; --panel:#050b07; --link:#5fffbf; --shadow:0 0 24px rgba(0,255,136,0.2);
+      --bg:#020202; --text:#d1ffe8; --muted:#9deccf; --accent:#00ff88; --accent-2:#89ff00;
+      --border:#0a3; --panel:#050b07; --link:#78ffd0; --link-hover:#a9ffe4; --shadow:0 0 24px rgba(0,255,136,0.2);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     html,body{height:100%}
     body{
       margin:0; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      background:radial-gradient(1200px 800px at 50% -20%, rgba(0,255,136,0.08), transparent 60%), var(--bg);
-      color:var(--text); line-height:1.7; letter-spacing:.2px; overflow-x:hidden;
+      background:radial-gradient(1200px 800px at 50% -20%, rgba(0,255,136,0.06), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.65; letter-spacing:.2px; overflow-x:hidden;
     }
-    /* Subtle CRT scanline + glow */
-    body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.02), rgba(255,255,255,.02) 1px, transparent 2px, transparent 3px ); pointer-events:none; mix-blend-mode:overlay}
-    body::after{content:""; position:fixed; inset:0; box-shadow:inset 0 0 120px rgba(0,255,136,.08); pointer-events:none}
+    /* Subtle CRT scanline (toned down) */
+    body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.012), rgba(255,255,255,.012) 1px, transparent 3px ); pointer-events:none; mix-blend-mode:overlay}
 
     a{color:var(--link); text-decoration:none}
-    a:hover{text-decoration:underline}
+    a:hover{color:var(--link-hover); text-decoration:none}
 
-    header{position:sticky; top:0; backdrop-filter:blur(6px); background:rgba(2,2,2,.6); border-bottom:1px solid #063; z-index:50}
-    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 16px}
+    /* ===== Header (sticky, professional) ===== */
+    header{position:sticky; top:0; backdrop-filter:blur(8px); background:rgba(2,2,2,.6); border-bottom:1px solid #063; z-index:100}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:18px; padding:14px 16px}
     .brand{display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.5px}
     .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent); box-shadow:0 0 12px var(--accent)}
-    .nav a{padding:8px 10px; border:1px dashed #084; border-radius:10px; box-shadow:var(--shadow)}
-    .nav a:hover{background:#041; text-decoration:none}
+    .nav a{padding:10px 6px; border-radius:8px; position:relative}
+    .nav a::after{content:""; position:absolute; left:8px; right:8px; bottom:0; height:2px; border-radius:2px; background:transparent; transition:background .2s}
+    .nav a:hover::after{background:rgba(0,255,136,.35)}
+    .nav a.active::after{background:var(--accent)}
+    .lang{margin-left:4px; padding:6px 10px; border:1px solid #084; border-radius:8px; opacity:.9}
     .spacer{flex:1}
-    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, #07150f, #030905); box-shadow:var(--shadow)}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:10px; background:linear-gradient(180deg, #07150f, #030905); box-shadow:var(--shadow)}
 
     main{max-width:1100px; margin:0 auto; padding:24px 16px 80px}
 
+    /* Prevent anchor-under-header clipping */
+    section{margin-top:40px; scroll-margin-top:80px}
+
     .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:36px 0}
-    .panel{background:linear-gradient(180deg, #07150f, #030905); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
+    .panel{background:linear-gradient(180deg, #07150f, #030905); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow)}
     .terminal{padding:20px; position:relative}
     .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed #084}
     .dot-r, .dot-y, .dot-g{width:10px;height:10px;border-radius:50%}
@@ -50,9 +56,7 @@
     .prompt{color:var(--muted)}
     .cursor{display:inline-block; width:9px; background:var(--accent); animation:blink 1s steps(2,start) infinite}
     @keyframes blink{50%{background:transparent}}
-    .kbd{display:inline-block; font-size:.95em; border:1px solid #094; padding:2px 6px; border-radius:6px; background:#041}
 
-    .stack{display:grid; gap:16px}
     .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
     .card{padding:16px}
 
@@ -60,11 +64,11 @@
     h2{margin:18px 0 8px; font-weight:600}
     h3{margin:14px 0 6px}
     .muted{color:#a8ffdf}
-    .tag{display:inline-block; padding:4px 8px; border:1px solid #095; border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:#041}
 
-    section{margin-top:40px}
-    .section-title{display:flex; align-items:center; gap:12px; font-weight:600}
-    .section-title .hash{color:var(--accent-2)}
+    /* Chips (project filters) */
+    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .chip{border:1px solid #095; background:#041; color:var(--text); padding:6px 10px; border-radius:999px; font-size:.9em; cursor:pointer}
+    .chip[aria-pressed="true"]{background:#063}
 
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:4px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent)}
@@ -80,6 +84,8 @@
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
+      .nav a{padding:10px 4px}
+      .lang{display:none}
     }
   </style>
 </head>
@@ -94,7 +100,7 @@
       <a href="#education">education</a>
       <a href="#contact">contact</a>
       <div class="spacer"></div>
-      <span class="kbd" aria-label="Languages">EN • FR</span>
+      <span class="lang" aria-label="Languages">EN • FR</span>
       <a class="btn" id="printBtn" href="#">↥ export / print</a>
     </div>
   </header>
@@ -107,18 +113,19 @@
         <h1>hi, i'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
         <p><span class="prompt">$ whoami</span> <span id="typed"></span><span class="cursor">&nbsp;</span></p>
         <p class="muted">Cybersecurity • DevSecOps • IoT Security • Research</p>
-        <div>
-          <button class="tag" data-filter="all">#all</button>
-          <button class="tag" data-filter="devsecops">#devsecops</button>
-          <button class="tag" data-filter="iot">#iot</button>
-          <button class="tag" data-filter="ml">#ml-security</button>
-          <button class="tag" data-filter="bug">#bug-bounty</button>
+        <div class="chips" role="group" aria-label="Project filters">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">#all</button>
+          <button class="chip" type="button" data-filter="devsecops" aria-pressed="false">#devsecops</button>
+          <button class="chip" type="button" data-filter="iot" aria-pressed="false">#iot</button>
+          <button class="chip" type="button" data-filter="ml" aria-pressed="false">#ml-security</button>
+          <button class="chip" type="button" data-filter="bug" aria-pressed="false">#bug-bounty</button>
         </div>
       </div>
       <div class="panel card">
         <h2>contact</h2>
         <ul>
-          <li>Email: <a id="emailLink" href="mailto:piyushadk26@gmail.com">piyushadk26@gmail.com</a> <button class="kbd" id="copyEmail">copy</button></li>
+          <li>Email: <a id="emailLink" href="mailto:adhikaripiyush41@gmail.com">adhikaripiyush41@gmail.com</a> <button class="chip" id="copyEmail" type="button">copy</button></li>
+          <li>Phone: <a href="tel:+15146649864">+1 514-664-9864</a></li>
           <li>LinkedIn: <a target="_blank" rel="noreferrer" href="https://linkedin.com/in/piyush-adhikari">linkedin.com/in/piyush-adhikari</a></li>
           <li>GitHub: <a target="_blank" rel="noreferrer" href="https://github.com/adhikaripiyush41">github.com/adhikaripiyush41</a></li>
         </ul>
@@ -170,9 +177,9 @@
           <h3>APT Detection Engine</h3>
           <p>Correlation engine across Windows/Linux using ELK + Beats to detect multi‑stage APT patterns.</p>
           <div class="meta">
-            <span class="tag">ELK</span>
-            <span class="tag">Windows/Linux</span>
-            <span class="tag">Threat‑Hunting</span>
+            <span class="chip" aria-disabled="true">ELK</span>
+            <span class="chip" aria-disabled="true">Windows/Linux</span>
+            <span class="chip" aria-disabled="true">Threat‑Hunting</span>
           </div>
           <p><a href="https://github.com/adhikari-piyush41/ASID-Tool" target="_blank" rel="noreferrer">repo</a></p>
         </article>
@@ -180,9 +187,9 @@
           <h3>Container Escape Detection</h3>
           <p>Real‑time pipeline (Sysdig/eBPF/ELK) tracking 10+ container escape CVEs via syscall analysis.</p>
           <div class="meta">
-            <span class="tag">eBPF</span>
-            <span class="tag">Sysdig</span>
-            <span class="tag">ELK</span>
+            <span class="chip" aria-disabled="true">eBPF</span>
+            <span class="chip" aria-disabled="true">Sysdig</span>
+            <span class="chip" aria-disabled="true">ELK</span>
           </div>
           <p><a href="https://github.com/MrMajumder/oss_container_project" target="_blank" rel="noreferrer">repo</a></p>
         </article>
@@ -190,9 +197,9 @@
           <h3>Stealthy DoS on Microservices</h3>
           <p>Blind DoS script exploiting milli‑bottlenecks in gateways; demonstrates undetectable degradation.</p>
           <div class="meta">
-            <span class="tag">Python</span>
-            <span class="tag">Kubernetes</span>
-            <span class="tag">Benchmark</span>
+            <span class="chip" aria-disabled="true">Python</span>
+            <span class="chip" aria-disabled="true">Kubernetes</span>
+            <span class="chip" aria-disabled="true">Benchmark</span>
           </div>
           <p><a href="https://github.com/adhikari-piyush41/MilliBottleneck-Attack" target="_blank" rel="noreferrer">repo</a></p>
         </article>
@@ -200,9 +207,9 @@
           <h3>SSL/TLS Exploit Development</h3>
           <p>Built exploits for BEAST, POODLE, DROWN; validated against legacy OpenSSL stacks in GNS3.</p>
           <div class="meta">
-            <span class="tag">Python</span>
-            <span class="tag">OpenSSL</span>
-            <span class="tag">GNS3</span>
+            <span class="chip" aria-disabled="true">Python</span>
+            <span class="chip" aria-disabled="true">OpenSSL</span>
+            <span class="chip" aria-disabled="true">GNS3</span>
           </div>
           <p><a href="https://github.com/adhikari-piyush41/SSL-Protocol-Exploits" target="_blank" rel="noreferrer">repo</a></p>
         </article>
@@ -316,12 +323,15 @@
     // Project filtering
     const grid = document.getElementById('projectGrid');
     const cards = Array.from(grid.querySelectorAll('.project'));
-    document.querySelectorAll('.tag[data-filter]').forEach(btn=>{
+    const chips = document.querySelectorAll('.chip[data-filter]');
+    chips.forEach(btn=>{
       btn.addEventListener('click', ()=>{
+        chips.forEach(x=>x.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
         const f = btn.dataset.filter;
         cards.forEach(c=>{
           const tags = (c.dataset.tags||'').split(' ');
-          const show = f === 'all' || tags.includes(f) || (f==='ml' && tags.includes('ml'));
+          const show = f === 'all' || tags.includes(f);
           c.style.display = show ? '' : 'none';
         });
       });
@@ -329,7 +339,7 @@
   </script>
 
   <style media="print">
-    header, #printBtn, .tag[data-filter]{ display:none !important }
+    header, #printBtn, .chips{ display:none !important }
     body{ background:#fff; color:#000 }
     a{ color:#000; text-decoration:none }
     .panel{ background:#fff; border-color:#ddd; box-shadow:none }
@@ -343,7 +353,7 @@
     "name": "Piyush Adhikari",
     "alternateName": "Piyu",
     "jobTitle": "Cybersecurity Analyst & Researcher",
-    "email": "piyushadk26@gmail.com",
+    "email": "adhikaripiyush41@gmail.com",
     "sameAs": [
       "https://www.linkedin.com/in/piyush-adhikari/",
       "https://github.com/adhikaripiyush41"
