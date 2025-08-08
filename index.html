@@ -5,135 +5,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Piyush Adhikari — Cybersecurity Portfolio</title>
   <meta name="description" content="Portfolio of Piyush Adhikari — cybersecurity analyst & researcher. Projects, experience, skills, and contact." />
-  <meta name="theme-color" content="#00ff88" />
-  <meta property="og:title" content="Piyush Adhikari — Cybersecurity Portfolio" />
-  <meta property="og:description" content="Cybersecurity portfolio with a hacker/terminal theme. Projects, experience, skills, contact." />
-  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0bd67f" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#020202; --text:#d1ffe8; --muted:#7fffd4; --accent:#00ff88; --accent-2:#89ff00; --warn:#ffea00; --danger:#ff4d4d;
-      --border:#0a3; --panel:#050b07; --link:#5fffbf; --shadow:0 0 24px rgba(0,255,136,0.2);
+      --bg:#0b0c0b; --text:#e8fff3; --muted:#9eeecf; --accent:#0bd67f; --accent-2:#9cff3a;
+      --ink:#c6ffea; --border:#104f34; --panel:#0f1412; --link:#93ffd7; --ring:0 0 0 3px rgba(11,214,127,.25);
+      --shadow:0 6px 28px rgba(11,214,127,.14), inset 0 1px 0 rgba(255,255,255,.03);
     }
+    :root.light{
+      --bg:#ffffff; --text:#0b0c0b; --muted:#245c45; --accent:#0bd67f; --accent-2:#1b6;
+      --ink:#073; --border:#dce7e1; --panel:#f7faf8; --link:#065f46; --shadow:0 6px 28px rgba(6,95,70,.08), inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     html,body{height:100%}
     body{
-      margin:0; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      background:radial-gradient(1200px 800px at 50% -20%, rgba(0,255,136,0.08), transparent 60%), var(--bg);
-      color:var(--text); line-height:1.65; letter-spacing:.2px; overflow-x:hidden;
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:radial-gradient(1000px 600px at 50% -20%, rgba(11,214,127,.08), transparent 60%), var(--bg);
+      color:var(--text); line-height:1.7; letter-spacing:.2px; overflow-x:hidden;
     }
-    /* Subtle CRT scanline + glow */
-    body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.02), rgba(255,255,255,.02) 1px, transparent 2px, transparent 3px ); pointer-events:none; mix-blend-mode:overlay}
-    body::after{content:""; position:fixed; inset:0; box-shadow:inset 0 0 120px rgba(0,255,136,.08); pointer-events:none}
+    /* Accessibility + subtle CRT */
+    @media (prefers-reduced-motion:no-preference){
+      body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.015), rgba(255,255,255,.015) 1px, transparent 3px, transparent 4px ); pointer-events:none; mix-blend-mode:overlay}
+    }
 
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    header{position:sticky; top:0; backdrop-filter:blur(6px); background:rgba(2,2,2,.6); border-bottom:1px solid #063; z-index:50}
-    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 16px}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.5px}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent); box-shadow:0 0 12px var(--accent)}
-    .nav a{padding:8px 10px; border:1px dashed #084; border-radius:10px; box-shadow:var(--shadow)}
-    .nav a:hover{background:#041; text-decoration:none}
+    /* ======= HEADER (fixed + professional) ======= */
+    .skip{position:absolute; left:-9999px; top:auto}
+    .skip:focus{left:12px; top:12px; background:#000; color:#0bd67f; padding:8px 10px; border-radius:8px}
+    header{position:sticky; top:0; z-index:100; backdrop-filter:blur(8px); background:color-mix(in oklab, var(--bg) 75%, transparent); border-bottom:1px solid var(--border)}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:20px; padding:14px 18px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:600; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace}
+    .brand .logo{display:inline-grid; place-items:center; width:34px; height:34px; border-radius:10px; border:1px solid var(--border); background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); box-shadow:var(--shadow); font-weight:600}
+    .brand .word{letter-spacing:.4px}
+
+    .nav-links{display:flex; gap:10px; align-items:center}
+    .nav-links a{padding:10px 12px; border-radius:10px; border:1px solid transparent; font-weight:500}
+    .nav-links a:hover{background:color-mix(in oklab, var(--panel) 90%, black 10%); text-decoration:none}
+    .nav-links a.active{border-color:var(--border); box-shadow:var(--shadow)}
+
     .spacer{flex:1}
-    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, #07150f, #030905); box-shadow:var(--shadow)}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); box-shadow:var(--shadow)}
+    .btn:focus{outline:none; box-shadow:var(--ring)}
 
-    main{max-width:1100px; margin:0 auto; padding:24px 16px 80px}
-
+    /* ======= LAYOUT ======= */
+    main{max-width:1100px; margin:0 auto; padding:28px 16px 96px}
     .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:36px 0}
-    .panel{background:linear-gradient(180deg, #07150f, #030905); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
-    .terminal{padding:20px; position:relative}
-    .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed #084}
+    .panel{background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
+    .terminal{padding:22px; position:relative}
+    .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed var(--border)}
     .dot-r, .dot-y, .dot-g{width:10px;height:10px;border-radius:50%}
     .dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f}
 
-    .prompt{color:var(--muted)}
-    .cursor{display:inline-block; width:9px; background:var(--accent); animation:blink 1s steps(2,start) infinite}
-    @keyframes blink{50%{background:transparent}}
-    .kbd{display:inline-block; font-size:.95em; border:1px solid #094; padding:2px 6px; border-radius:6px; background:#041}
+    .muted{color:var(--muted)}
+    .kbd{display:inline-block; font-size:.95em; border:1px solid var(--border); padding:2px 6px; border-radius:6px; background:color-mix(in oklab, var(--panel) 85%, black)}
 
-    .stack{display:grid; gap:16px}
     .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
     .card{padding:16px}
 
-    h1{font-weight:600; letter-spacing:1px; margin:0 0 8px}
+    h1{font-weight:700; letter-spacing:.6px; margin:0 0 8px}
     h2{margin:18px 0 8px; font-weight:600}
     h3{margin:14px 0 6px}
-    .muted{color:#a8ffdf}
-    .tag{display:inline-block; padding:4px 8px; border:1px solid #095; border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:#041}
+    .tag{display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:color-mix(in oklab, var(--panel) 85%, black)}
 
     section{margin-top:40px}
-    .section-title{display:flex; align-items:center; gap:12px; font-weight:600}
-    .section-title .hash{color:var(--accent-2)}
+    .section-title{display:flex; align-items:center; gap:10px; font-weight:700}
+    .section-title .hash{color:var(--accent-2); font-family:"Fira Code", ui-monospace}
 
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:4px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent)}
-    .item{position:relative; margin:14px 0; padding-left:10px}
+    .item{position:relative; margin:16px 0; padding-left:10px}
     .item::before{content:""; position:absolute; left:-2px; top:6px; width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent)}
 
-    .project{border:1px dashed #085}
     .project .meta{display:flex; gap:10px; flex-wrap:wrap}
 
-    footer{margin-top:48px; padding:24px 0; border-top:1px solid #063; color:#bdf6de; font-size:.95em}
+    footer{margin-top:48px; padding:24px 0; border-top:1px solid var(--border); color:var(--ink); font-size:.95em}
 
-    /* Responsive */
+    /* ======= RESPONSIVE ======= */
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
+      .nav-links{display:none}
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <header>
     <div class="nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>piyush@portfolio:<span class="muted">~/cyber</span>$</span></div>
-      <a href="#about">about</a>
-      <a href="#experience">experience</a>
-      <a href="#projects">projects</a>
-      <a href="#skills">skills</a>
-      <a href="#education">education</a>
-      <a href="#contact">contact</a>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">&gt;_</div>
+        <div class="word">piyush<span class="muted">.security</span></div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
       <div class="spacer"></div>
-      <a class="btn" id="printBtn" href="#">↥ export / print</a>
+      <button class="btn" id="themeToggle" aria-label="Toggle theme">🌙 Theme</button>
+      <a class="btn" id="printBtn" href="#">↥ Export</a>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- HERO / INTRO -->
     <section class="hero">
       <div class="panel terminal">
         <div class="term-head"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-        <h1>hi, i'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
-        <p><span class="prompt">$</span> <span id="typed"></span><span class="cursor">&nbsp;</span></p>
-        <p class="muted">Cybersecurity • DevSecOps • IoT Security • Research</p>
+        <h1>Hi, I'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
+        <p class="muted" id="typedLine" style="font-family:'Fira Code', ui-monospace; font-size:1.05rem"></p>
         <div>
-          <a class="tag" href="#projects">#red-team</a>
-          <a class="tag" href="#projects">#bug-bounty</a>
-          <a class="tag" href="#projects">#ml-security</a>
-          <a class="tag" href="#projects">#devsecops</a>
+          <button class="tag" data-filter="all">#all</button>
+          <button class="tag" data-filter="devsecops">#devsecops</button>
+          <button class="tag" data-filter="iot">#iot</button>
+          <button class="tag" data-filter="ml">#ml-security</button>
+          <button class="tag" data-filter="bug">#bug-bounty</button>
         </div>
       </div>
       <div class="panel card">
-        <h2>quick facts</h2>
+        <h2>Quick facts</h2>
         <ul>
           <li>Role: Cybersecurity (analysis, research, automation)</li>
           <li>Focus: IoT security, CI/CD hardening, vulnerability evolution</li>
           <li>Currently: final-year student; active in research & bug bounty</li>
           <li>Location: Canada</li>
         </ul>
-        <div style="margin-top:8px">
-          <a class="btn" target="_blank" rel="noreferrer" href="mailto:hello@piyush.dev">✉ email</a>
-          <a class="btn" target="_blank" rel="noreferrer" href="https://github.com/"> github</a>
-          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/piyush-adhikari/">in linkedin</a>
+        <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+          <button class="btn" id="copyEmail">✉ Copy Email</button>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://github.com/"> GitHub</a>
+          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/piyush-adhikari/">in LinkedIn</a>
         </div>
+        <div id="toast" role="status" aria-live="polite" style="opacity:0; transition:opacity .3s; margin-top:10px; font-weight:600; color:var(--accent)"></div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about">
-      <div class="section-title"><span class="hash">#</span><h2>about</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>About</h2></div>
       <div class="panel card">
         <p>
           Security-minded engineer with a research streak. I design resilient detection systems, automate security validation, and turn messy data into decisions. I like shipping clean tooling and writing clear docs so teams can move fast <em>and</em> safely.
@@ -143,7 +161,7 @@
 
     <!-- EXPERIENCE -->
     <section id="experience">
-      <div class="section-title"><span class="hash">#</span><h2>experience</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>Experience</h2></div>
       <div class="timeline panel card">
         <div class="item">
           <h3>Cybersecurity Researcher — <span class="muted">Independent / University</span></h3>
@@ -151,30 +169,29 @@
           <ul>
             <li>Built an IoT event verification pipeline robust to external influence (EI) with SVM ensembles; designed criteria to resist EI mimicry at runtime.</li>
             <li>Led a study on vulnerability evolution in CI/CD (200k+ Docker image versions), proposing dynamic risk scoring and RL-based remediation planning.</li>
-            <li>Hands-on with Grafana Labs (Intigriti) as bug bounty focus; emphasis on logical vulns and authz flaws.</li>
+            <li>Bug bounty focus on Grafana Labs (Intigriti), with emphasis on logical vulnerabilities and authz flaws.</li>
           </ul>
         </div>
-        <!-- Add more roles below as needed -->
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects">
-      <div class="section-title"><span class="hash">#</span><h2>projects</h2></div>
-      <div class="grid">
-        <article class="panel card project">
-          <h3>Vulnerability Evolution Dataset</h3>
-          <p>Longitudinal dataset over 200k container versions to model how CVEs emerge, persist, and retire across CI/CD lifecycles. Includes dynamic risk scoring.</p>
+      <div class="section-title"><span class="hash">#</span><h2>Projects</h2></div>
+      <div class="grid" id="projectGrid">
+        <article class="panel card project" data-tags="devsecops">
+          <h3>DevSecOps Hardening Toolkit</h3>
+          <p>GitHub Actions + scripts to gate builds on SBOM diffs, CVE drift, and policy-as-code.</p>
           <div class="meta">
-            <span class="tag">docker</span>
-            <span class="tag">cve</span>
-            <span class="tag">risk-model</span>
+            <span class="tag">sbom</span>
+            <span class="tag">slsa</span>
+            <span class="tag">gha</span>
           </div>
-          <p><a href="#">repo</a> · <a href="#">paper (preprint)</a></p>
+          <p><a href="#">repo</a></p>
         </article>
-        <article class="panel card project">
-          <h3>EI-Resilient Event Verification</h3>
-          <p>Multi-sensor SVM ensemble for IoT events. Discovers II characteristics that resist EI mimicry using automated hypothesis testing.</p>
+        <article class="panel card project" data-tags="iot ml">
+          <h3>EI‑Resilient Event Verification</h3>
+          <p>Multi-sensor SVM ensemble for IoT events; discovers II traits that resist EI mimicry.</p>
           <div class="meta">
             <span class="tag">iot</span>
             <span class="tag">svm</span>
@@ -182,22 +199,22 @@
           </div>
           <p><a href="#">repo</a> · <a href="#">docs</a></p>
         </article>
-        <article class="panel card project">
-          <h3>DevSecOps Hardening Toolkit</h3>
-          <p>Opinionated scripts and GitHub Actions to gate builds on SBOM diff, high/critical CVE drift, and policy-as-code checks.</p>
+        <article class="panel card project" data-tags="ml devsecops">
+          <h3>Vulnerability Evolution Dataset</h3>
+          <p>200k+ container versions to model how CVEs emerge, persist, and retire across CI/CD lifecycles.</p>
           <div class="meta">
-            <span class="tag">sbom</span>
-            <span class="tag">slsA</span>
-            <span class="tag">gha</span>
+            <span class="tag">docker</span>
+            <span class="tag">cve</span>
+            <span class="tag">risk-model</span>
           </div>
-          <p><a href="#">repo</a></p>
+          <p><a href="#">repo</a> · <a href="#">paper</a></p>
         </article>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills">
-      <div class="section-title"><span class="hash">#</span><h2>skills</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>Skills</h2></div>
       <div class="panel card">
         <p>
           <span class="tag">Threat Modeling</span>
@@ -215,7 +232,7 @@
 
     <!-- EDUCATION -->
     <section id="education">
-      <div class="section-title"><span class="hash">#</span><h2>education</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>Education</h2></div>
       <div class="panel card">
         <ul>
           <li>Bachelor’s (final year) — Cybersecurity focus — Canada</li>
@@ -225,51 +242,91 @@
 
     <!-- CONTACT -->
     <section id="contact">
-      <div class="section-title"><span class="hash">#</span><h2>contact</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>Contact</h2></div>
       <div class="panel card">
-        <p>Email: <a href="mailto:hello@piyush.dev">hello@piyush.dev</a> · GitHub: <a href="https://github.com/" target="_blank" rel="noreferrer">github.com/your-handle</a> · LinkedIn: <a href="https://www.linkedin.com/in/piyush-adhikari/" target="_blank" rel="noreferrer">/in/piyush-adhikari</a></p>
+        <p>Email: <a id="emailLink" href="mailto:hello@piyush.dev">hello@piyush.dev</a> · GitHub: <a href="https://github.com/" target="_blank" rel="noreferrer">github.com/your-handle</a> · LinkedIn: <a href="https://www.linkedin.com/in/piyush-adhikari/" target="_blank" rel="noreferrer">/in/piyush-adhikari</a></p>
       </div>
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Piyush Adhikari. Built with HTML/CSS/JS. Terminal theme, accessible contrast, no frameworks.</div>
+      <div>© <span id="year"></span> Piyush Adhikari · Built with vanilla HTML/CSS/JS · Accessible · Fast</div>
     </footer>
   </main>
 
   <script>
-    // Editable headline lines (quickly customize without digging around)
-    const HEADLINE = [
+    // ===== Typewriter (hero line) =====
+    const LINES = [
       "cybersecurity analyst & researcher",
       "devsecops | iot security | ml",
-      "breaking things. documenting better. fixing fastest."
+      "break things • document better • fix fastest"
     ];
+    const typed = document.getElementById('typedLine');
+    let li=0, cj=0, dir=1;
+    function typeLoop(){
+      const line = LINES[li];
+      cj += dir; typed.textContent = line.slice(0, cj);
+      if(cj === line.length + 10) dir = -1;
+      if(cj === 0){ dir = 1; li = (li+1) % LINES.length; }
+      setTimeout(typeLoop, 60);
+    } typeLoop();
 
-    // Typewriter
-    const el = document.getElementById('typed');
-    let i=0, j=0, dir=1; // which line, char index, direction
-    function tick(){
-      const line = HEADLINE[i];
-      j += dir;
-      el.textContent = line.slice(0, j);
-      if(j === line.length + 8){ dir = -1; }
-      if(j === 0){ dir = 1; i = (i+1) % HEADLINE.length; }
-      setTimeout(tick, 60);
-    }
-    tick();
+    // ===== Theme toggle =====
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const pref = localStorage.getItem('theme');
+    if(pref === 'light') root.classList.add('light');
+    themeBtn.addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
 
-    // Print / Export friendly
+    // ===== Export/Print =====
     document.getElementById('printBtn').addEventListener('click', (e)=>{ e.preventDefault(); window.print(); });
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Copy email =====
+    const toast = document.getElementById('toast');
+    document.getElementById('copyEmail').addEventListener('click', async ()=>{
+      const email = document.getElementById('emailLink').textContent.trim();
+      try{ await navigator.clipboard.writeText(email); toast.textContent = 'Email copied to clipboard'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1600);}catch(e){ toast.textContent = 'Press Ctrl+C to copy'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1600); }
+    });
+
+    // ===== Active section highlighting in nav =====
+    const linkMap = Array.from(document.querySelectorAll('.nav-links a')).map(a=>({a, id:a.getAttribute('href').slice(1)}));
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          linkMap.forEach(({a})=>a.classList.remove('active'));
+          const match = linkMap.find(x=>x.id === ent.target.id);
+          if(match) match.a.classList.add('active');
+        }
+      });
+    }, {threshold:.6});
+    linkMap.forEach(({id})=>{ const sec=document.getElementById(id); if(sec) io.observe(sec); });
+
+    // ===== Project filtering =====
+    const grid = document.getElementById('projectGrid');
+    const cards = Array.from(grid.querySelectorAll('.project'));
+    document.querySelectorAll('.tag[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const f = btn.dataset.filter;
+        cards.forEach(c=>{
+          const tags = (c.dataset.tags||'').split(' ');
+          const show = f === 'all' || tags.includes(f) || (f==='ml' && tags.includes('ml'));
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
   </script>
 
   <style media="print">
-    header, #printBtn{ display:none !important }
+    header, #printBtn, #themeToggle, .tag[data-filter]{ display:none !important }
     body{ background:#fff; color:#000 }
     a{ color:#000; text-decoration:none }
     .panel{ background:#fff; border-color:#ddd; box-shadow:none }
   </style>
 
-  <!-- Schema.org Person for richer SEO -->
+  <!-- Schema.org Person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
