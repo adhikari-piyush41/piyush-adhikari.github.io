@@ -5,125 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Piyush Adhikari — Cybersecurity Portfolio</title>
   <meta name="description" content="Portfolio of Piyush Adhikari — cybersecurity analyst & researcher. Projects, experience, skills, and contact." />
-  <meta name="theme-color" content="#0bd67f" />
+  <meta name="theme-color" content="#00ff88" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0c0b; --text:#e8fff3; --muted:#9eeecf; --accent:#0bd67f; --accent-2:#9cff3a;
-      --ink:#c6ffea; --border:#104f34; --panel:#0f1412; --link:#93ffd7; --ring:0 0 0 3px rgba(11,214,127,.25);
-      --shadow:0 6px 28px rgba(11,214,127,.14), inset 0 1px 0 rgba(255,255,255,.03);
+      --bg:#020202; --text:#d1ffe8; --muted:#9deccf; --accent:#00ff88; --accent-2:#89ff00; --warn:#ffea00; --danger:#ff4d4d;
+      --border:#0a3; --panel:#050b07; --link:#5fffbf; --shadow:0 0 24px rgba(0,255,136,0.2);
     }
-    :root.light{
-      --bg:#ffffff; --text:#0b0c0b; --muted:#245c45; --accent:#0bd67f; --accent-2:#1b6;
-      --ink:#073; --border:#dce7e1; --panel:#f7faf8; --link:#065f46; --shadow:0 6px 28px rgba(6,95,70,.08), inset 0 1px 0 rgba(255,255,255,.6);
-    }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:radial-gradient(1000px 600px at 50% -20%, rgba(11,214,127,.08), transparent 60%), var(--bg);
+      margin:0; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background:radial-gradient(1200px 800px at 50% -20%, rgba(0,255,136,0.08), transparent 60%), var(--bg);
       color:var(--text); line-height:1.7; letter-spacing:.2px; overflow-x:hidden;
     }
-    /* Accessibility + subtle CRT */
-    @media (prefers-reduced-motion:no-preference){
-      body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.015), rgba(255,255,255,.015) 1px, transparent 3px, transparent 4px ); pointer-events:none; mix-blend-mode:overlay}
-    }
+    /* Subtle CRT scanline + glow */
+    body::before{content:""; position:fixed; inset:0; background:repeating-linear-gradient( to bottom, rgba(255,255,255,.02), rgba(255,255,255,.02) 1px, transparent 2px, transparent 3px ); pointer-events:none; mix-blend-mode:overlay}
+    body::after{content:""; position:fixed; inset:0; box-shadow:inset 0 0 120px rgba(0,255,136,.08); pointer-events:none}
 
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* ======= HEADER (fixed + professional) ======= */
-    .skip{position:absolute; left:-9999px; top:auto}
-    .skip:focus{left:12px; top:12px; background:#000; color:#0bd67f; padding:8px 10px; border-radius:8px}
-    header{position:sticky; top:0; z-index:100; backdrop-filter:blur(8px); background:color-mix(in oklab, var(--bg) 75%, transparent); border-bottom:1px solid var(--border)}
-    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:20px; padding:14px 18px}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:600; font-family:"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace}
-    .brand .logo{display:inline-grid; place-items:center; width:34px; height:34px; border-radius:10px; border:1px solid var(--border); background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); box-shadow:var(--shadow); font-weight:600}
-    .brand .word{letter-spacing:.4px}
-
-    .nav-links{display:flex; gap:10px; align-items:center}
-    .nav-links a{padding:10px 12px; border-radius:10px; border:1px solid transparent; font-weight:500}
-    .nav-links a:hover{background:color-mix(in oklab, var(--panel) 90%, black 10%); text-decoration:none}
-    .nav-links a.active{border-color:var(--border); box-shadow:var(--shadow)}
-
+    header{position:sticky; top:0; backdrop-filter:blur(6px); background:rgba(2,2,2,.6); border-bottom:1px solid #063; z-index:50}
+    .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 16px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.5px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent); box-shadow:0 0 12px var(--accent)}
+    .nav a{padding:8px 10px; border:1px dashed #084; border-radius:10px; box-shadow:var(--shadow)}
+    .nav a:hover{background:#041; text-decoration:none}
     .spacer{flex:1}
-    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); box-shadow:var(--shadow)}
-    .btn:focus{outline:none; box-shadow:var(--ring)}
+    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, #07150f, #030905); box-shadow:var(--shadow)}
 
-    /* ======= LAYOUT ======= */
-    main{max-width:1100px; margin:0 auto; padding:28px 16px 96px}
+    main{max-width:1100px; margin:0 auto; padding:24px 16px 80px}
+
     .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:36px 0}
-    .panel{background:linear-gradient(180deg, var(--panel), color-mix(in oklab, var(--panel) 70%, black)); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
-    .terminal{padding:22px; position:relative}
-    .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed var(--border)}
+    .panel{background:linear-gradient(180deg, #07150f, #030905); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow)}
+    .terminal{padding:20px; position:relative}
+    .term-head{display:flex; gap:8px; padding-bottom:12px; margin-bottom:16px; border-bottom:1px dashed #084}
     .dot-r, .dot-y, .dot-g{width:10px;height:10px;border-radius:50%}
     .dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f}
 
-    .muted{color:var(--muted)}
-    .kbd{display:inline-block; font-size:.95em; border:1px solid var(--border); padding:2px 6px; border-radius:6px; background:color-mix(in oklab, var(--panel) 85%, black)}
+    .prompt{color:var(--muted)}
+    .cursor{display:inline-block; width:9px; background:var(--accent); animation:blink 1s steps(2,start) infinite}
+    @keyframes blink{50%{background:transparent}}
+    .kbd{display:inline-block; font-size:.95em; border:1px solid #094; padding:2px 6px; border-radius:6px; background:#041}
 
+    .stack{display:grid; gap:16px}
     .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
     .card{padding:16px}
 
-    h1{font-weight:700; letter-spacing:.6px; margin:0 0 8px}
+    h1{font-weight:600; letter-spacing:1px; margin:0 0 8px}
     h2{margin:18px 0 8px; font-weight:600}
     h3{margin:14px 0 6px}
-    .tag{display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:color-mix(in oklab, var(--panel) 85%, black)}
+    .muted{color:#a8ffdf}
+    .tag{display:inline-block; padding:4px 8px; border:1px solid #095; border-radius:999px; margin:4px 6px 0 0; font-size:.9em; background:#041}
 
     section{margin-top:40px}
-    .section-title{display:flex; align-items:center; gap:10px; font-weight:700}
-    .section-title .hash{color:var(--accent-2); font-family:"Fira Code", ui-monospace}
+    .section-title{display:flex; align-items:center; gap:12px; font-weight:600}
+    .section-title .hash{color:var(--accent-2)}
 
     .timeline{position:relative; padding-left:18px}
     .timeline::before{content:""; position:absolute; left:4px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent)}
-    .item{position:relative; margin:16px 0; padding-left:10px}
+    .item{position:relative; margin:14px 0; padding-left:10px}
     .item::before{content:""; position:absolute; left:-2px; top:6px; width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent)}
 
+    .project{border:1px dashed #085}
     .project .meta{display:flex; gap:10px; flex-wrap:wrap}
 
-    footer{margin-top:48px; padding:24px 0; border-top:1px solid var(--border); color:var(--ink); font-size:.95em}
+    footer{margin-top:48px; padding:24px 0; border-top:1px solid #063; color:#bdf6de; font-size:.95em}
 
-    /* ======= RESPONSIVE ======= */
+    /* Responsive */
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
-      .nav-links{display:none}
     }
   </style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
   <header>
     <div class="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">&gt;_</div>
-        <div class="word">piyush<span class="muted">.security</span></div>
-      </div>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>piyush@portfolio:<span class="muted">~/cyber</span>$</span></div>
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#education">education</a>
+      <a href="#contact">contact</a>
       <div class="spacer"></div>
-      <button class="btn" id="themeToggle" aria-label="Toggle theme">🌙 Theme</button>
-      <a class="btn" id="printBtn" href="#">↥ Export</a>
+      <span class="kbd" aria-label="Languages">EN • FR</span>
+      <a class="btn" id="printBtn" href="#">↥ export / print</a>
     </div>
   </header>
 
-  <main id="main">
+  <main>
     <!-- HERO / INTRO -->
     <section class="hero">
       <div class="panel terminal">
         <div class="term-head"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-        <h1>Hi, I'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
-        <p class="muted" id="typedLine" style="font-family:'Fira Code', ui-monospace; font-size:1.05rem"></p>
+        <h1>hi, i'm <span style="color:var(--accent)">Piyush Adhikari</span> <span class="muted">(Piyu)</span></h1>
+        <p><span class="prompt">$ whoami</span> <span id="typed"></span><span class="cursor">&nbsp;</span></p>
+        <p class="muted">Cybersecurity • DevSecOps • IoT Security • Research</p>
         <div>
           <button class="tag" data-filter="all">#all</button>
           <button class="tag" data-filter="devsecops">#devsecops</button>
@@ -133,43 +116,48 @@
         </div>
       </div>
       <div class="panel card">
-        <h2>Quick facts</h2>
+        <h2>contact</h2>
         <ul>
-          <li>Role: Cybersecurity (analysis, research, automation)</li>
-          <li>Focus: IoT security, CI/CD hardening, vulnerability evolution</li>
-          <li>Currently: final-year student; active in research & bug bounty</li>
-          <li>Location: Canada</li>
+          <li>Email: <a id="emailLink" href="mailto:adhikaripiyush41@gmail.com">adhikaripiyush41@gmail.com</a> <button class="kbd" id="copyEmail">copy</button></li>
+          <li>Phone: <a href="tel:+15146649864">+1 514-664-9864</a></li>
+          <li>LinkedIn: <a target="_blank" rel="noreferrer" href="https://linkedin.com/in/piyush-adhikari">linkedin.com/in/piyush-adhikari</a></li>
+          <li>GitHub: <a target="_blank" rel="noreferrer" href="https://github.com/adhikaripiyush41">github.com/adhikaripiyush41</a></li>
         </ul>
-        <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
-          <button class="btn" id="copyEmail">✉ Copy Email</button>
-          <a class="btn" target="_blank" rel="noreferrer" href="https://github.com/"> GitHub</a>
-          <a class="btn" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/piyush-adhikari/">in LinkedIn</a>
-        </div>
-        <div id="toast" role="status" aria-live="polite" style="opacity:0; transition:opacity .3s; margin-top:10px; font-weight:600; color:var(--accent)"></div>
+        <div id="toast" role="status" aria-live="polite" style="opacity:0; transition:opacity .3s; margin-top:6px; font-weight:600; color:var(--accent)"></div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT / SUMMARY -->
     <section id="about">
-      <div class="section-title"><span class="hash">#</span><h2>About</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>summary</h2></div>
       <div class="panel card">
         <p>
-          Security-minded engineer with a research streak. I design resilient detection systems, automate security validation, and turn messy data into decisions. I like shipping clean tooling and writing clear docs so teams can move fast <em>and</em> safely.
+          Security researcher and practitioner with experience across vulnerability management, IoT anomaly detection, and DevSecOps automation. I design efficient detection and response systems, build datasets, and ship tooling that helps teams move fast and safely.
         </p>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section id="experience">
-      <div class="section-title"><span class="hash">#</span><h2>Experience</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>experience</h2></div>
       <div class="timeline panel card">
         <div class="item">
-          <h3>Cybersecurity Researcher — <span class="muted">Independent / University</span></h3>
-          <div class="muted">2024–2025 · Canada</div>
+          <h3>CISR Lab @ Concordia University — <span class="muted">Security Research Assistant</span></h3>
+          <div class="muted">Sep 2023 – Sep 2025 · QC, Canada</div>
           <ul>
-            <li>Built an IoT event verification pipeline robust to external influence (EI) with SVM ensembles; designed criteria to resist EI mimicry at runtime.</li>
-            <li>Led a study on vulnerability evolution in CI/CD (200k+ Docker image versions), proposing dynamic risk scoring and RL-based remediation planning.</li>
-            <li>Bug bounty focus on Grafana Labs (Intigriti), with emphasis on logical vulnerabilities and authz flaws.</li>
+            <li>Developing evasion and defense techniques for 5 physical-based IoT anomaly detection systems (in progress).</li>
+            <li>Built a high-performance vulnerability detection & response framework for Docker, outperforming state-of-the-art scanners by <strong>80%</strong>.</li>
+            <li>Contributed to lab research on vulnerability management and LLM-driven cybersecurity agents.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3>Biz Serve IT — <span class="muted">Information Security Associate</span></h3>
+          <div class="muted">Jun 2021 – Jun 2023 · Kathmandu, Nepal</div>
+          <ul>
+            <li>Identified security gaps in 50+ client environments via pentesting, source code analysis, and configuration reviews (gov, banking, software).</li>
+            <li>Applied STRIDE for threat modeling and DREAD for risk scoring; reduced risk exposure by <strong>30–50%</strong>.</li>
+            <li>Executed phishing/vishing/USB drop campaigns for 10+ clients to assess workforce security awareness.</li>
+            <li>Trained 20+ developers (3 companies) on OWASP Top 10 to strengthen secure coding culture.</li>
           </ul>
         </div>
       </div>
@@ -177,122 +165,144 @@
 
     <!-- PROJECTS -->
     <section id="projects">
-      <div class="section-title"><span class="hash">#</span><h2>Projects</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>projects</h2></div>
       <div class="grid" id="projectGrid">
-        <article class="panel card project" data-tags="devsecops">
-          <h3>DevSecOps Hardening Toolkit</h3>
-          <p>GitHub Actions + scripts to gate builds on SBOM diffs, CVE drift, and policy-as-code.</p>
+        <article class="panel card project" data-tags="ml iot">
+          <h3>APT Detection Engine</h3>
+          <p>Correlation engine across Windows/Linux using ELK + Beats to detect multi‑stage APT patterns.</p>
           <div class="meta">
-            <span class="tag">sbom</span>
-            <span class="tag">slsa</span>
-            <span class="tag">gha</span>
+            <span class="tag">ELK</span>
+            <span class="tag">Windows/Linux</span>
+            <span class="tag">Threat‑Hunting</span>
           </div>
-          <p><a href="#">repo</a></p>
+          <p><a href="https://github.com/adhikari-piyush41/ASID-Tool" target="_blank" rel="noreferrer">repo</a></p>
         </article>
-        <article class="panel card project" data-tags="iot ml">
-          <h3>EI‑Resilient Event Verification</h3>
-          <p>Multi-sensor SVM ensemble for IoT events; discovers II traits that resist EI mimicry.</p>
+        <article class="panel card project" data-tags="devsecops">
+          <h3>Container Escape Detection</h3>
+          <p>Real‑time pipeline (Sysdig/eBPF/ELK) tracking 10+ container escape CVEs via syscall analysis.</p>
           <div class="meta">
-            <span class="tag">iot</span>
-            <span class="tag">svm</span>
-            <span class="tag">robust-ml</span>
+            <span class="tag">eBPF</span>
+            <span class="tag">Sysdig</span>
+            <span class="tag">ELK</span>
           </div>
-          <p><a href="#">repo</a> · <a href="#">docs</a></p>
+          <p><a href="https://github.com/MrMajumder/oss_container_project" target="_blank" rel="noreferrer">repo</a></p>
         </article>
         <article class="panel card project" data-tags="ml devsecops">
-          <h3>Vulnerability Evolution Dataset</h3>
-          <p>200k+ container versions to model how CVEs emerge, persist, and retire across CI/CD lifecycles.</p>
+          <h3>Stealthy DoS on Microservices</h3>
+          <p>Blind DoS script exploiting milli‑bottlenecks in gateways; demonstrates undetectable degradation.</p>
           <div class="meta">
-            <span class="tag">docker</span>
-            <span class="tag">cve</span>
-            <span class="tag">risk-model</span>
+            <span class="tag">Python</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Benchmark</span>
           </div>
-          <p><a href="#">repo</a> · <a href="#">paper</a></p>
+          <p><a href="https://github.com/adhikari-piyush41/MilliBottleneck-Attack" target="_blank" rel="noreferrer">repo</a></p>
+        </article>
+        <article class="panel card project" data-tags="crypto devsecops">
+          <h3>SSL/TLS Exploit Development</h3>
+          <p>Built exploits for BEAST, POODLE, DROWN; validated against legacy OpenSSL stacks in GNS3.</p>
+          <div class="meta">
+            <span class="tag">Python</span>
+            <span class="tag">OpenSSL</span>
+            <span class="tag">GNS3</span>
+          </div>
+          <p><a href="https://github.com/adhikari-piyush41/SSL-Protocol-Exploits" target="_blank" rel="noreferrer">repo</a></p>
         </article>
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS & CERTS -->
     <section id="skills">
-      <div class="section-title"><span class="hash">#</span><h2>Skills</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>skills & certs</h2></div>
       <div class="panel card">
-        <p>
-          <span class="tag">Threat Modeling</span>
-          <span class="tag">SAST/DAST</span>
-          <span class="tag">Container Security</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Python</span>
-          <span class="tag">Bash</span>
-          <span class="tag">Machine Learning</span>
-          <span class="tag">IoT Protocols</span>
-          <span class="tag">Bug Bounty</span>
-        </p>
+        <h3>Security</h3>
+        <p>Security Auditing (ISO 27001, NIST, CIS Controls), Threat Modeling, VAPT, Source Code Analysis, Social Engineering, Threat Hunting</p>
+        <h3>Tools</h3>
+        <p>BurpSuite, Nessus, Nuclei, Splunk, ELK (Elasticsearch/Logstash/Kibana), Falco, Suricata, Sysdig, Clair, Trivy, SonarQube, Semgrep, AFL</p>
+        <h3>Programming</h3>
+        <p>Python, Java, JavaScript, Shell, GraphQL</p>
+        <h3>Certifications</h3>
+        <p>CEH (EC‑Council), ISC2 CC, AppSec (SecureOps)</p>
+        <h3>Other</h3>
+        <p>Agile (Scrum/Kanban), Machine Learning, CI/CD, AWS, Azure, Docker, Kubernetes, Git, Leadership, Research, Presenting</p>
       </div>
     </section>
 
     <!-- EDUCATION -->
     <section id="education">
-      <div class="section-title"><span class="hash">#</span><h2>Education</h2></div>
+      <div class="section-title"><span class="hash">#</span><h2>education</h2></div>
       <div class="panel card">
         <ul>
-          <li>Bachelor’s (final year) — Cybersecurity focus — Canada</li>
+          <li><strong>Concordia University</strong>, QC, Canada — <em>MASc. Information Systems Security</em> — Graduating Dec 2025 — GPA 4.15/4.30</li>
+          <li><strong>Islington College (London Metropolitan University)</strong>, Kathmandu, Nepal — <em>BSc. Computer Networking & IT Security</em> — Sep 2022 — First Class Honors (Batch Topper)</li>
         </ul>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-title"><span class="hash">#</span><h2>Contact</h2></div>
+    <!-- ACTIVITIES -->
+    <section id="activities">
+      <div class="section-title"><span class="hash">#</span><h2>activities</h2></div>
       <div class="panel card">
-        <p>Email: <a id="emailLink" href="mailto:hello@piyush.dev">hello@piyush.dev</a> · GitHub: <a href="https://github.com/" target="_blank" rel="noreferrer">github.com/your-handle</a> · LinkedIn: <a href="https://www.linkedin.com/in/piyush-adhikari/" target="_blank" rel="noreferrer">/in/piyush-adhikari</a></p>
+        <ul>
+          <li><strong>Student Academic Representative</strong> — Islington College (Sep 2021 – Sep 2022): represented 1000+ students; survey‑driven advocacy.</li>
+          <li><strong>Technical Writing</strong> — Baeldung (Sep 2022 – Present): 12+ articles on Security, Linux, DevOps — <a href="https://www.baeldung.com/author/piyushadhikari" target="_blank" rel="noreferrer">author page</a>.</li>
+          <li><strong>Hackathon Organizer</strong> — Concordia University (Sep 2024 – Present): secured 10+ sponsors; ops & logistics.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages">
+      <div class="section-title"><span class="hash">#</span><h2>languages</h2></div>
+      <div class="panel card">
+        <p>English (Advanced) • Français / French (Beginner)</p>
+      </div>
+    </section>
+
+    <!-- CONTACT (footer dup for convenience) -->
+    <section id="contact">
+      <div class="section-title"><span class="hash">#</span><h2>contact</h2></div>
+      <div class="panel card">
+        <p>Email: <a href="mailto:adhikaripiyush41@gmail.com">adhikaripiyush41@gmail.com</a> · GitHub: <a href="https://github.com/adhikaripiyush41" target="_blank" rel="noreferrer">github.com/adhikaripiyush41</a> · LinkedIn: <a href="https://www.linkedin.com/in/piyush-adhikari/" target="_blank" rel="noreferrer">/in/piyush-adhikari</a> · Phone: <a href="tel:+15146649864">+1 514-664-9864</a></p>
       </div>
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Piyush Adhikari · Built with vanilla HTML/CSS/JS · Accessible · Fast</div>
+      <div>© <span id="year"></span> Piyush Adhikari. Built with HTML/CSS/JS. Terminal theme, accessible contrast, no frameworks.</div>
     </footer>
   </main>
 
   <script>
-    // ===== Typewriter (hero line) =====
-    const LINES = [
+    // Typewriter
+    const HEADLINE = [
       "cybersecurity analyst & researcher",
       "devsecops | iot security | ml",
-      "break things • document better • fix fastest"
+      "breaking things. documenting better. fixing fastest."
     ];
-    const typed = document.getElementById('typedLine');
-    let li=0, cj=0, dir=1;
-    function typeLoop(){
-      const line = LINES[li];
-      cj += dir; typed.textContent = line.slice(0, cj);
-      if(cj === line.length + 10) dir = -1;
-      if(cj === 0){ dir = 1; li = (li+1) % LINES.length; }
-      setTimeout(typeLoop, 60);
-    } typeLoop();
+    const el = document.getElementById('typed');
+    let i=0, j=0, dir=1;
+    function tick(){
+      const line = HEADLINE[i];
+      j += dir;
+      el.textContent = line.slice(0, j);
+      if(j === line.length + 8){ dir = -1; }
+      if(j === 0){ dir = 1; i = (i+1) % HEADLINE.length; }
+      setTimeout(tick, 60);
+    }
+    tick();
 
-    // ===== Theme toggle =====
-    const root = document.documentElement;
-    const themeBtn = document.getElementById('themeToggle');
-    const pref = localStorage.getItem('theme');
-    if(pref === 'light') root.classList.add('light');
-    themeBtn.addEventListener('click', ()=>{
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    });
-
-    // ===== Export/Print =====
+    // Print / Export
     document.getElementById('printBtn').addEventListener('click', (e)=>{ e.preventDefault(); window.print(); });
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ===== Copy email =====
+    // Copy email toast
     const toast = document.getElementById('toast');
     document.getElementById('copyEmail').addEventListener('click', async ()=>{
       const email = document.getElementById('emailLink').textContent.trim();
-      try{ await navigator.clipboard.writeText(email); toast.textContent = 'Email copied to clipboard'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1600);}catch(e){ toast.textContent = 'Press Ctrl+C to copy'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1600); }
+      try{ await navigator.clipboard.writeText(email); toast.textContent = 'email copied to clipboard'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1400);}catch(e){ toast.textContent = 'press Ctrl+C to copy'; toast.style.opacity = 1; setTimeout(()=> toast.style.opacity = 0, 1600); }
     });
 
-    // ===== Active section highlighting in nav =====
-    const linkMap = Array.from(document.querySelectorAll('.nav-links a')).map(a=>({a, id:a.getAttribute('href').slice(1)}));
+    // Active section highlighting in header
+    const linkMap = Array.from(document.querySelectorAll('header .nav a[href^="#"]')).map(a=>({a, id:a.getAttribute('href').slice(1)}));
     const io = new IntersectionObserver(entries=>{
       entries.forEach(ent=>{
         if(ent.isIntersecting){
@@ -304,7 +314,7 @@
     }, {threshold:.6});
     linkMap.forEach(({id})=>{ const sec=document.getElementById(id); if(sec) io.observe(sec); });
 
-    // ===== Project filtering =====
+    // Project filtering
     const grid = document.getElementById('projectGrid');
     const cards = Array.from(grid.querySelectorAll('.project'));
     document.querySelectorAll('.tag[data-filter]').forEach(btn=>{
@@ -320,13 +330,13 @@
   </script>
 
   <style media="print">
-    header, #printBtn, #themeToggle, .tag[data-filter]{ display:none !important }
+    header, #printBtn, .tag[data-filter]{ display:none !important }
     body{ background:#fff; color:#000 }
     a{ color:#000; text-decoration:none }
     .panel{ background:#fff; border-color:#ddd; box-shadow:none }
   </style>
 
-  <!-- Schema.org Person -->
+  <!-- Schema.org Person for richer SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -334,11 +344,10 @@
     "name": "Piyush Adhikari",
     "alternateName": "Piyu",
     "jobTitle": "Cybersecurity Analyst & Researcher",
-    "url": "",
-    "email": "hello@piyush.dev",
+    "email": "adhikaripiyush41@gmail.com",
     "sameAs": [
       "https://www.linkedin.com/in/piyush-adhikari/",
-      "https://github.com/"
+      "https://github.com/adhikaripiyush41"
     ],
     "knowsAbout": ["Cybersecurity", "IoT Security", "DevSecOps", "Bug Bounty", "Machine Learning"]
   }
